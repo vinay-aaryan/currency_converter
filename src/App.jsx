@@ -11,11 +11,6 @@ function App() {
 
 const currencyInfo = useCurrencyInfo(from)
 
-  // Optional: Show a loading spinner or message while fetching
-  if (!currencyInfo || Object.keys(currencyInfo).length === 0) {
-    return <p>Loading currency data...</p>;
-  }
-
   const options = Object.keys(currencyInfo);
 
 const swap = () =>{
@@ -53,12 +48,12 @@ return (
                           label="From"
                           amount={amount}
                           currencyOptions={options}
-                          onCurrencyChange={(currency) => setAmount(amount)}
                           selectCurrency={from}
+                          onCurrencyChange={(currency) => setFrom(currency)}
                           onAmountChange={(amount) => setAmount(amount)}
-
-                          
                       />
+                      
+                      
                   </div>
                   <div className="relative w-full h-0.5">
                       <button
@@ -75,8 +70,9 @@ return (
                           amount={convertedAmt}
                           currencyOptions={options}
                           onCurrencyChange={(currency) => setTo(currency)}
-                          selectCurrency={from}
+                          selectCurrency={to}
                           amountDisable
+
                       />
                   </div>
                   <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
